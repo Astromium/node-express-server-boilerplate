@@ -6,6 +6,7 @@ const limit = require('express-rate-limit');
 const cors = require('cors');
 const morgan = require('morgan')
 const compression = require('compression');
+const globalErrorHandler = require('./controllers/errorController')
 
 
 
@@ -30,6 +31,8 @@ app.use(compression())
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 };
+
+app.use(globalErrorHandler);
 
 
 module.exports = app;
